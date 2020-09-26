@@ -1,0 +1,7 @@
+name: MClans
+version: 1.0
+main: com.jaeheonshim.mclans.MClansPlugin
+commands:
+  clan:
+    description: Run clan based commands
+    usage: /<command> <action>
