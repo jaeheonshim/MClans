@@ -46,4 +46,12 @@ public class Clan {
     public String getOwnerUuid() {
         return ownerUuid;
     }
+
+    public Set<String> getMembers() {
+        return new HashSet<>(members);
+    }
+
+    public int getClaimAmount() {
+        return landClaims.size();
+    }
 }

@@ -19,4 +19,11 @@ public class PlayerManager {
     public static PlayerManager getInstance() {
         return instance;
     }
+
+    public SPlayer newPlayer(String uuid) {
+        SPlayer sPlayer = new SPlayer();
+        playerMap.put(uuid, sPlayer);
+
+        return sPlayer;
+    }
 }
