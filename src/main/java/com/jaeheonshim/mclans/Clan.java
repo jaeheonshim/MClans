@@ -1,13 +1,18 @@
 package com.jaeheonshim.mclans;
 
+import dev.morphia.annotations.Converters;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
 import org.bukkit.Chunk;
-
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity("Clans")
 public class Clan {
+    @Id
+    private String id;
     private String name;
-    private Set<Chunk> landClaims = new HashSet<>();
+    private Set<DataChunk> landClaims = new HashSet<>();
     private String ownerUuid;
     private Set<String> members = new HashSet<>();
 
@@ -17,7 +22,7 @@ public class Clan {
     }
 
     public boolean ownsChunk(Chunk chunk) {
-        return landClaims.contains(chunk);
+        return landClaims.contains(new DataChunk(chunk));
     }
 
     public String getName() {
@@ -26,7 +31,7 @@ public class Clan {
 
     public boolean claim(Chunk chunk) {
         if(ClanManager.getClanManager().getClanInChunk(chunk) == null) {
-            landClaims.add(chunk);
+            landClaims.add(new DataChunk(chunk));
             return true;
         } else {
             return false;

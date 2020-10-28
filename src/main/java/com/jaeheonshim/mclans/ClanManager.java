@@ -1,17 +1,23 @@
 package com.jaeheonshim.mclans;
 
+import dev.morphia.Datastore;
 import org.bukkit.Chunk;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClanManager {
+    private final Datastore datastore;
     private List<Clan> clans = new ArrayList<>();
 
-    private static ClanManager clanManager = new ClanManager();
+    private static ClanManager clanManager;
 
-    private ClanManager() {
+    private ClanManager(Datastore datastore) {
+        this.datastore = datastore;
+    }
 
+    public static void init(Datastore datastore) {
+        clanManager = new ClanManager(datastore);
     }
 
     public static ClanManager getClanManager() {
@@ -43,5 +49,9 @@ public class ClanManager {
         }
 
         return null;
+    }
+
+    public void saveClan(Clan clan) {
+        datastore.save(clan);
     }
 }

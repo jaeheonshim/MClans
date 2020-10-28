@@ -1,0 +1,4 @@
+database:
+  url: Replace this with your MySQL database connection url
+  user: Replace this with a MySQL user that has access to the database in the above url
+  pass: Replace this with the password of the MySQL user above
