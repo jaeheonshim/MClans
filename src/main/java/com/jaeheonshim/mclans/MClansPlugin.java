@@ -1,9 +1,6 @@
 package com.jaeheonshim.mclans;
 
-import com.jaeheonshim.mclans.commands.AbstractCommand;
-import com.jaeheonshim.mclans.commands.ClaimCommand;
-import com.jaeheonshim.mclans.commands.InfoCommand;
-import com.jaeheonshim.mclans.commands.NewClanCommand;
+import com.jaeheonshim.mclans.commands.*;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
@@ -22,7 +19,8 @@ public class MClansPlugin extends JavaPlugin {
     private static List<AbstractCommand> commands = Arrays.asList(
             new ClaimCommand(),
             new InfoCommand(),
-            new NewClanCommand()
+            new NewClanCommand(),
+            new ListClaimsCommand()
     );
 
     @Override

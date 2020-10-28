@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class DataChunk {
     private int x;
@@ -21,7 +22,7 @@ public class DataChunk {
     }
 
     public Chunk getChunk() {
-        return Bukkit.getWorld(worldUUid).getChunkAt(x, z);
+        return Bukkit.getWorld(UUID.fromString(worldUUid)).getChunkAt(x, z);
     }
 
     @Override

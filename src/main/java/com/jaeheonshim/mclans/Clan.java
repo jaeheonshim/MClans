@@ -65,6 +65,10 @@ public class Clan {
         return landClaims.size();
     }
 
+    public Set<DataChunk> getLandClaims() {
+        return new HashSet<>(landClaims);
+    }
+
     @Override
     public String toString() {
         return "Clan{" +
