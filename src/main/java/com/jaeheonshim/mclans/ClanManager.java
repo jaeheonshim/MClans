@@ -1,6 +1,8 @@
 package com.jaeheonshim.mclans;
 
 import dev.morphia.Datastore;
+import dev.morphia.query.Query;
+import dev.morphia.query.internal.MorphiaCursor;
 import org.bukkit.Chunk;
 
 import java.util.ArrayList;
@@ -24,6 +26,14 @@ public class ClanManager {
         return clanManager;
     }
 
+    public void loadClans() {
+        MorphiaCursor<Clan> query = datastore.find(Clan.class).find();
+        System.out.println(datastore.find(Clan.class).count());
+        while(query.hasNext()) {
+            clans.add(query.next());
+        }
+    }
+
     public Clan getClanInChunk(Chunk chunk) {
         for(Clan clan : clans) {
             if(clan.ownsChunk(chunk)) {
@@ -37,6 +47,8 @@ public class ClanManager {
     public Clan newClan(String player, String name) {
         Clan newClan = new Clan(name, player);
         clans.add(newClan);
+
+        saveClan(newClan);
 
         return newClan;
     }

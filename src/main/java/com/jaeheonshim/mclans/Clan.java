@@ -3,6 +3,7 @@ package com.jaeheonshim.mclans;
 import dev.morphia.annotations.Converters;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
+import org.bson.types.ObjectId;
 import org.bukkit.Chunk;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,11 +11,15 @@ import java.util.Set;
 @Entity("Clans")
 public class Clan {
     @Id
-    private String id;
+    private ObjectId id;
     private String name;
     private Set<DataChunk> landClaims = new HashSet<>();
     private String ownerUuid;
     private Set<String> members = new HashSet<>();
+
+    public Clan() {
+
+    }
 
     public Clan(String name, String ownerUuid) {
         this.name = name;

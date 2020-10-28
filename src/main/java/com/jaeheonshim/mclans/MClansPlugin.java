@@ -3,6 +3,7 @@ package com.jaeheonshim.mclans;
 import com.jaeheonshim.mclans.commands.AbstractCommand;
 import com.jaeheonshim.mclans.commands.ClaimCommand;
 import com.jaeheonshim.mclans.commands.InfoCommand;
+import com.jaeheonshim.mclans.commands.NewClanCommand;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
@@ -22,7 +23,8 @@ import java.util.StringJoiner;
 public class MClansPlugin extends JavaPlugin {
     private static List<AbstractCommand> commands = Arrays.asList(
             new ClaimCommand(),
-            new InfoCommand()
+            new InfoCommand(),
+            new NewClanCommand()
     );
 
     @Override
@@ -30,9 +32,6 @@ public class MClansPlugin extends JavaPlugin {
         saveDefaultConfig();
 
         getLogger().info("Plugin enabled");
-
-        Clan test = ClanManager.getClanManager().newClan("028fce20-ab39-4bd3-b829-8e027ee6a72b", "Test");
-        test.claim(getServer().getWorlds().get(0).getChunkAt(new Location(getServer().getWorlds().get(0), 0, 0, 0)));
 
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
@@ -44,10 +43,10 @@ public class MClansPlugin extends JavaPlugin {
         morphia.mapPackage("com.jaeheonshim.mclans");
         Datastore datastore = morphia.createDatastore(new MongoClient(), "mclans");
         datastore.ensureIndexes();
-        datastore.save(test);
 
         PlayerManager.init(datastore);
         ClanManager.init(datastore);
+        ClanManager.getClanManager().loadClans();
     }
 
     @Override
