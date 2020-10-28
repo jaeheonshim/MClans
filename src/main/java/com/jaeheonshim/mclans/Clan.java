@@ -43,6 +43,15 @@ public class Clan {
         }
     }
 
+    public boolean unclaim(Chunk chunk) {
+        if(ownsChunk(chunk)) {
+            landClaims.remove(new DataChunk(chunk));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean addMember(String uuid) {
         members.add(uuid);
 

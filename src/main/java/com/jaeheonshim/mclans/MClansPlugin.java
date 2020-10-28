@@ -20,7 +20,8 @@ public class MClansPlugin extends JavaPlugin {
             new ClaimCommand(),
             new InfoCommand(),
             new NewClanCommand(),
-            new ListClaimsCommand()
+            new ListClaimsCommand(),
+            new UnclaimCommand()
     );
 
     @Override
