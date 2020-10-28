@@ -3,6 +3,7 @@ package com.jaeheonshim.mclans;
 import dev.morphia.Datastore;
 import dev.morphia.query.Query;
 import dev.morphia.query.internal.MorphiaCursor;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 
 import java.util.ArrayList;
@@ -27,11 +28,12 @@ public class ClanManager {
     }
 
     public void loadClans() {
+        Bukkit.getLogger().info("Loading all clans from database...");
         MorphiaCursor<Clan> query = datastore.find(Clan.class).find();
-        System.out.println(datastore.find(Clan.class).count());
         while(query.hasNext()) {
             clans.add(query.next());
         }
+        Bukkit.getLogger().info("Successfully loaded all clans!");
     }
 
     public Clan getClanInChunk(Chunk chunk) {
@@ -64,6 +66,7 @@ public class ClanManager {
     }
 
     public void saveClan(Clan clan) {
+        Bukkit.getLogger().info("Saving clan: " + clan);
         datastore.save(clan);
     }
 }

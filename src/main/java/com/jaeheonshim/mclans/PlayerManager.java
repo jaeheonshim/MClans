@@ -22,7 +22,7 @@ public class PlayerManager {
     }
 
     public SPlayer getPlayer(String uuid) {
-        SPlayer player = datastore.find(SPlayer.class).field("uuid").equal(uuid).first();
+        SPlayer player = datastore.find(SPlayer.class).field("_id").equal(uuid).first();
 
         if(player != null) {
             playerMap.put(uuid, player);
@@ -46,5 +46,9 @@ public class PlayerManager {
         playerMap.put(uuid, sPlayer);
 
         return sPlayer;
+    }
+
+    public void savePlayer(SPlayer player) {
+        datastore.save(player);
     }
 }

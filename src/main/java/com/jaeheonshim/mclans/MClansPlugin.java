@@ -7,10 +7,7 @@ import com.jaeheonshim.mclans.commands.NewClanCommand;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
-import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -19,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.logging.Level;
 
 public class MClansPlugin extends JavaPlugin {
     private static List<AbstractCommand> commands = Arrays.asList(
@@ -33,6 +31,7 @@ public class MClansPlugin extends JavaPlugin {
 
         getLogger().info("Plugin enabled");
 
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
@@ -46,7 +45,13 @@ public class MClansPlugin extends JavaPlugin {
 
         PlayerManager.init(datastore);
         ClanManager.init(datastore);
-        ClanManager.getClanManager().loadClans();
+
+        try {
+            ClanManager.getClanManager().loadClans();
+        } catch(RuntimeException e) {
+            Bukkit.getLogger().severe("Failed to load all clans! Disabling plugin to preserve database.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
     }
 
     @Override

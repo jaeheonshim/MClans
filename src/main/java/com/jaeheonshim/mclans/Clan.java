@@ -64,4 +64,12 @@ public class Clan {
     public int getClaimAmount() {
         return landClaims.size();
     }
+
+    @Override
+    public String toString() {
+        return "Clan{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

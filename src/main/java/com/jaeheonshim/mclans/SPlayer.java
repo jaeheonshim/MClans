@@ -6,9 +6,13 @@ import javax.persistence.Id;
 @Entity
 public class SPlayer {
     @Id
-    private String uuid;
+    private String _id;
     private long timePlayed;
     private String cachedUsername;
+
+    public SPlayer() {
+
+    }
 
     public void addTimePlayed(long minutes) {
         timePlayed += minutes;
@@ -31,10 +35,10 @@ public class SPlayer {
     }
 
     public String getUuid() {
-        return uuid;
+        return _id;
     }
 
     public void setUuid(String uuid) {
-        this.uuid = uuid;
+        this._id = uuid;
     }
 }

@@ -10,6 +10,10 @@ public class DataChunk {
     private int z;
     private String worldUUid;
 
+    public DataChunk() {
+
+    }
+
     public DataChunk(Chunk chunk) {
         this.x = chunk.getX();
         this.z = chunk.getZ();
