@@ -1,7 +1,13 @@
 package com.jaeheonshim.mclans;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.Transient;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class SPlayer {
@@ -9,6 +15,9 @@ public class SPlayer {
     private String _id;
     private long timePlayed;
     private String cachedUsername;
+
+    @Transient
+    private Set<ClanInvitation> invitations = new HashSet<>();
 
     public SPlayer() {
 
@@ -40,5 +49,27 @@ public class SPlayer {
 
     public void setUuid(String uuid) {
         this._id = uuid;
+    }
+
+    public void addInvitation(ClanInvitation invitation) {
+        invitations.add(invitation);
+    }
+
+    public boolean isInvited(Clan clan) {
+        for(ClanInvitation invitation : invitations) {
+            if(invitation.getClanId().equalsIgnoreCase(clan.getId().toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ClanInvitation getInvitation(Clan clan) {
+        for(ClanInvitation invitation : invitations) {
+            if(invitation.getClanId().equalsIgnoreCase(clan.getId().toString())) {
+                return invitation;
+            }
+        }
+        return null;
     }
 }

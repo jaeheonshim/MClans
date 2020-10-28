@@ -22,14 +22,17 @@ public class PlayerManager {
     }
 
     public SPlayer getPlayer(String uuid) {
-        SPlayer player = datastore.find(SPlayer.class).field("_id").equal(uuid).first();
+        SPlayer player = playerMap.get(uuid);
 
-        if(player != null) {
-            playerMap.put(uuid, player);
-        } else if(playerMap.get(uuid) == null) {
-            SPlayer newPlayer = newPlayer(uuid, Bukkit.getPlayer(UUID.fromString(uuid)).getName());
-            playerMap.put(uuid, newPlayer);
-            datastore.save(newPlayer);
+        if(player == null) {
+            SPlayer retrievedPlayer = datastore.find(SPlayer.class).field("_id").equal(uuid).first();
+            if(retrievedPlayer != null)
+                playerMap.put(uuid, retrievedPlayer);
+            else {
+                SPlayer newPlayer = newPlayer(uuid, Bukkit.getPlayer(UUID.fromString(uuid)).getName());
+                playerMap.put(uuid, newPlayer);
+                datastore.save(newPlayer);
+            }
         }
 
         return playerMap.get(uuid);

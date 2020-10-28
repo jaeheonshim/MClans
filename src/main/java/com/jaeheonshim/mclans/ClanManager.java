@@ -65,6 +65,16 @@ public class ClanManager {
         return null;
     }
 
+    public Clan getClanByName(String name) {
+        for(Clan clan : clans) {
+            if(clan.getName().equalsIgnoreCase(name)) {
+                return clan;
+            }
+        }
+
+        return null;
+    }
+
     public void saveClan(Clan clan) {
         Bukkit.getLogger().info("Saving clan: " + clan);
         datastore.save(clan);

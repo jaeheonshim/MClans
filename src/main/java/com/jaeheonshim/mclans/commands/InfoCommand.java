@@ -40,7 +40,7 @@ public class InfoCommand extends AbstractCommand {
             memberJoiner.add(PlayerManager.getInstance().getPlayer(member).getCachedUsername());
         }
 
-        message.append(memberJoiner.length() > 0 ? memberJoiner.toString() : "None" + "\n");
+        message.append(memberJoiner.length() > 0 ? memberJoiner.toString() + "\n" : "None" + "\n");
         message.append(key + "Land claims: " + value + clan.getClaimAmount());
 
         player.sendMessage(message.toString());

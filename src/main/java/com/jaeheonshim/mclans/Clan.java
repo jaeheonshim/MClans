@@ -4,7 +4,10 @@ import dev.morphia.annotations.Converters;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import org.bson.types.ObjectId;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.entity.Player;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -76,6 +79,18 @@ public class Clan {
 
     public Set<DataChunk> getLandClaims() {
         return new HashSet<>(landClaims);
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void broadcastToOnline(String message) {
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            if(members.contains(player.getUniqueId().toString()) || ownerUuid.equalsIgnoreCase(player.getUniqueId().toString())) {
+                player.sendMessage(message);
+            }
+        }
     }
 
     @Override
