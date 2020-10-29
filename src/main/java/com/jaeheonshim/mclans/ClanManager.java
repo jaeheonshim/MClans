@@ -55,6 +55,12 @@ public class ClanManager {
         return newClan;
     }
 
+    public void destroyClan(Clan clan) {
+        clans.remove(clan);
+
+        datastore.delete(clan);
+    }
+
     public Clan getClanOfPlayer(String player) {
         for(Clan clan : clans) {
             if(clan.isMember(player)) {

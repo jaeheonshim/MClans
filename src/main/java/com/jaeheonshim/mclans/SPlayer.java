@@ -17,6 +17,9 @@ public class SPlayer {
     private String cachedUsername;
 
     @Transient
+    private long destroyClanTimeStamp;
+
+    @Transient
     private Set<ClanInvitation> invitations = new HashSet<>();
 
     public SPlayer() {
@@ -71,5 +74,13 @@ public class SPlayer {
             }
         }
         return null;
+    }
+
+    public boolean isConfirmDestroy() {
+        return destroyClanTimeStamp + Constant.CLAN_DESTROY_CONFIRM_TIMEOUT >= System.currentTimeMillis();
+    }
+
+    public void queueDestroy() {
+        destroyClanTimeStamp = System.currentTimeMillis();
     }
 }
