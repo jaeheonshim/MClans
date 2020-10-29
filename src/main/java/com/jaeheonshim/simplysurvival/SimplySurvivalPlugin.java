@@ -5,6 +5,7 @@ import com.jaeheonshim.simplysurvival.mclans.commands.*;
 import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import com.jaeheonshim.simplysurvival.server.commands.AbstractServerCommand;
 import com.jaeheonshim.simplysurvival.server.commands.MuteCommand;
+import com.jaeheonshim.simplysurvival.server.commands.SuicideCommand;
 import com.jaeheonshim.simplysurvival.server.listeners.PlayerChatListener;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
@@ -29,7 +30,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             new DestroyClanClanCommand(),
             new KickMemberClanCommand(),
             new LeaveClanClanCommand(),
-            new MuteCommand()
+            new MuteCommand(),
+            new SuicideCommand()
     );
 
     @Override

@@ -9,6 +9,9 @@ commands:
     description: Mute a player for a specified duration
     usage: /<command> <username> <hrs|mins> [reason]
     permission: simplysurvival.admin
+  suicide:
+    description: Instantly kills you
+    usage: /<command>
 permissions:
   simplysurvival.admin:
     default:
