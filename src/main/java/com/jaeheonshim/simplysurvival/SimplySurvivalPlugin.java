@@ -3,6 +3,8 @@ package com.jaeheonshim.simplysurvival;
 import com.jaeheonshim.simplysurvival.mclans.*;
 import com.jaeheonshim.simplysurvival.mclans.commands.*;
 import com.jaeheonshim.simplysurvival.server.PlayerManager;
+import com.jaeheonshim.simplysurvival.server.commands.AbstractServerCommand;
+import com.jaeheonshim.simplysurvival.server.commands.MuteCommand;
 import com.jaeheonshim.simplysurvival.server.listeners.PlayerChatListener;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
@@ -16,17 +18,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SimplySurvivalPlugin extends JavaPlugin {
-    private static List<AbstractCommand> commands = Arrays.asList(
-            new ClaimCommand(),
-            new InfoCommand(),
-            new NewClanCommand(),
-            new ListClaimsCommand(),
-            new UnclaimCommand(),
-            new InvitePlayerCommand(),
-            new AcceptInviteCommand(),
-            new DestroyClanCommand(),
-            new KickMemberCommand(),
-            new LeaveClanCommand()
+    private static List<AbstractServerCommand> commands = Arrays.asList(
+            new ClaimClanCommand(),
+            new InfoClanCommand(),
+            new NewClanClanCommand(),
+            new ListClaimsClanCommand(),
+            new UnclaimClanCommand(),
+            new InvitePlayerClanCommand(),
+            new AcceptInviteClanCommand(),
+            new DestroyClanClanCommand(),
+            new KickMemberClanCommand(),
+            new LeaveClanClanCommand(),
+            new MuteCommand()
     );
 
     @Override
@@ -70,9 +73,15 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             }
 
             String cmd = args[0];
-            for(AbstractCommand abstractCommand : commands) {
-                if(abstractCommand.getKeyword().equalsIgnoreCase(cmd)) {
-                    return abstractCommand.execute(sender, command, label, args);
+            for(AbstractServerCommand abstractClanCommand : commands) {
+                if(abstractClanCommand.getKeyword().equalsIgnoreCase(cmd) && abstractClanCommand instanceof AbstractClanCommand) {
+                    return abstractClanCommand.execute(sender, command, label, args);
+                }
+            }
+        } else {
+            for(AbstractServerCommand serverCommand : commands) {
+                if(command.getName().equalsIgnoreCase(serverCommand.getKeyword())) {
+                    return serverCommand.execute(sender, command, label, args);
                 }
             }
         }

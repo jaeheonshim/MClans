@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class NewClanCommand extends AbstractCommand {
+public class NewClanClanCommand extends AbstractClanCommand {
     @Override
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
         ClanManager clanManager = ClanManager.getClanManager();

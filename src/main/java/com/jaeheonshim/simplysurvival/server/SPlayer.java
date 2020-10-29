@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.time.Duration;
 import java.util.*;
 
 @Entity
@@ -18,6 +19,9 @@ public class SPlayer {
     private String _id;
     private long timePlayed;
     private String cachedUsername;
+
+    private String muteReason;
+    private long mutedUntil;
 
     @Transient
     private long destroyClanTimeStamp;
@@ -110,5 +114,27 @@ public class SPlayer {
         }
 
         return flagBuilder.toString();
+    }
+
+    public void setMutedDuration(Duration duration, String muteReason) {
+        this.muteReason = muteReason;
+        mutedUntil = System.currentTimeMillis() + duration.toMillis();
+    }
+
+    public void unmute() {
+        mutedUntil = 0;
+        muteReason = null;
+    }
+
+    public boolean isMuted() {
+        return mutedUntil > System.currentTimeMillis();
+    }
+
+    public long getMutedUntil() {
+        return mutedUntil;
+    }
+
+    public String getMuteReason() {
+        return muteReason;
     }
 }

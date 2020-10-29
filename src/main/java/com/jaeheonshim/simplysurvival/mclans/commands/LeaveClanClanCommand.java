@@ -1,13 +1,13 @@
 package com.jaeheonshim.simplysurvival.mclans.commands;
 
+import com.jaeheonshim.simplysurvival.mclans.Clan;
 import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.ChatColor;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class ClaimCommand extends AbstractCommand {
+public class LeaveClanClanCommand extends AbstractClanCommand {
     @Override
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
         ClanManager manager = ClanManager.getClanManager();
@@ -17,23 +17,23 @@ public class ClaimCommand extends AbstractCommand {
             return true;
         }
 
-        if(player.getLocation().getWorld().getEnvironment() == World.Environment.THE_END) {
-            player.sendMessage(ChatColor.RED + "You can't claim land here.");
+        Clan clan = manager.getClanOfPlayer(player.getUniqueId().toString());
+        if(clan.getOwnerUuid().equalsIgnoreCase(player.getUniqueId().toString())) {
+            player.sendMessage(ChatColor.RED + "The owner can't abandon their clan!");
             return true;
         }
 
-        if(manager.getClanOfPlayer(player.getUniqueId().toString()).claim(player.getLocation().getChunk())) {
-            player.sendMessage(ChatColor.GREEN + "Chunk successfully claimed!");
-            manager.saveClan(manager.getClanOfPlayer(player.getUniqueId().toString()));
-        } else {
-            player.sendMessage(ChatColor.RED + "This chunk is already claimed!");
-        }
+        clan.removeMember(player.getUniqueId().toString());
+        manager.saveClan(clan);
+
+        clan.broadcastToOnline(ChatColor.YELLOW + player.getName() + ChatColor.GREEN + " has left the clan.");
+        player.sendMessage(ChatColor.GREEN + "You have left the clan " + ChatColor.YELLOW + clan.getName());
 
         return true;
     }
 
     @Override
     public String getKeyword() {
-        return "claim";
+        return "leave";
     }
 }

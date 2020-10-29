@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.util.StringJoiner;
 
-public class InfoCommand extends AbstractCommand {
+public class InfoClanCommand extends AbstractClanCommand {
     @Override
     public boolean execute(CommandSender sender, Command command, String label, String[] args) {
         ClanManager manager = ClanManager.getClanManager();
