@@ -1,8 +1,7 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.server;
 
 import dev.morphia.Datastore;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.SpectralArrow;
 
 import java.util.HashMap;
 import java.util.Map;

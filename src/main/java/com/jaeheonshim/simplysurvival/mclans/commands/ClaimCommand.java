@@ -1,7 +1,6 @@
-package com.jaeheonshim.mclans.commands;
+package com.jaeheonshim.simplysurvival.mclans.commands;
 
-import com.jaeheonshim.mclans.ClanManager;
-import dev.morphia.Datastore;
+import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;

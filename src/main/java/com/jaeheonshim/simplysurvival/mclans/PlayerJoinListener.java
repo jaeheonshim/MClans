@@ -1,5 +1,6 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
+import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

@@ -1,4 +1,4 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
 import java.time.Duration;
 import java.util.Objects;

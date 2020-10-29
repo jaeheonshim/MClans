@@ -1,4 +1,4 @@
-package com.jaeheonshim.mclans.commands;
+package com.jaeheonshim.simplysurvival.mclans.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

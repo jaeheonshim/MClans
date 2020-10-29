@@ -1,13 +1,16 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.server;
 
+import com.jaeheonshim.simplysurvival.mclans.Clan;
+import com.jaeheonshim.simplysurvival.mclans.ClanInvitation;
+import com.jaeheonshim.simplysurvival.mclans.Constant;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Transient;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class SPlayer {
@@ -82,5 +85,30 @@ public class SPlayer {
 
     public void queueDestroy() {
         destroyClanTimeStamp = System.currentTimeMillis();
+    }
+
+    public PlayerFlag[] getPlayerFlags() {
+        List<PlayerFlag> flags = new ArrayList<>();
+        if (Bukkit.getPlayer(UUID.fromString(getUuid())).hasPermission("simplysurvival.admin")) {
+            flags.add(new PlayerFlag(0, ChatColor.RED, "ADMIN"));
+        }
+
+        return flags.toArray(new PlayerFlag[0]);
+    }
+
+    public String getPrettyFlags() {
+        StringBuilder flagBuilder = new StringBuilder();
+        PlayerFlag[] flags = getPlayerFlags();
+        Arrays.sort(flags, PlayerFlag.byPriority);
+
+        for(PlayerFlag flag : flags) {
+            flagBuilder.append(flag.getChatColor());
+            flagBuilder.append("[");
+            flagBuilder.append(flag.getName());
+            flagBuilder.append("]");
+            flagBuilder.append(ChatColor.RESET);
+        }
+
+        return flagBuilder.toString();
     }
 }

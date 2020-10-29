@@ -1,7 +1,7 @@
-package com.jaeheonshim.mclans.commands;
+package com.jaeheonshim.simplysurvival.mclans.commands;
 
-import com.jaeheonshim.mclans.Clan;
-import com.jaeheonshim.mclans.ClanManager;
+import com.jaeheonshim.simplysurvival.mclans.Clan;
+import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

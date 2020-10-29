@@ -1,14 +1,13 @@
-package com.jaeheonshim.mclans.commands;
+package com.jaeheonshim.simplysurvival.mclans.commands;
 
-import com.jaeheonshim.mclans.Clan;
-import com.jaeheonshim.mclans.ClanManager;
-import com.jaeheonshim.mclans.PlayerManager;
-import com.jaeheonshim.mclans.SPlayer;
+import com.jaeheonshim.simplysurvival.mclans.Clan;
+import com.jaeheonshim.simplysurvival.mclans.ClanManager;
+import com.jaeheonshim.simplysurvival.server.PlayerManager;
+import com.jaeheonshim.simplysurvival.server.SPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.SpectralArrow;
 
 public class AcceptInviteCommand extends AbstractCommand {
     @Override

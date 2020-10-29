@@ -1,4 +1,4 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;

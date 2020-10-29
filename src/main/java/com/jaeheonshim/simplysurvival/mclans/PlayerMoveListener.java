@@ -1,4 +1,4 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;

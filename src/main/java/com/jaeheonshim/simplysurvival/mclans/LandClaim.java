@@ -1,4 +1,4 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
 public class LandClaim {
     private int x;

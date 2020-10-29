@@ -1,7 +1,6 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival.mclans;
 
 import dev.morphia.Datastore;
-import dev.morphia.query.Query;
 import dev.morphia.query.internal.MorphiaCursor;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;

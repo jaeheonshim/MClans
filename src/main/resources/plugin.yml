@@ -1,6 +1,6 @@
 name: MClans
 version: 1.0
-main: com.jaeheonshim.mclans.MClansPlugin
+main: com.jaeheonshim.simplysurvival.SimplySurvivalPlugin
 commands:
   clan:
     description: Run clan based commands

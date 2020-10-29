@@ -1,21 +1,21 @@
-package com.jaeheonshim.mclans;
+package com.jaeheonshim.simplysurvival;
 
-import com.jaeheonshim.mclans.commands.*;
+import com.jaeheonshim.simplysurvival.mclans.*;
+import com.jaeheonshim.simplysurvival.mclans.commands.*;
+import com.jaeheonshim.simplysurvival.server.PlayerManager;
+import com.jaeheonshim.simplysurvival.server.listeners.PlayerChatListener;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.logging.Level;
 
-public class MClansPlugin extends JavaPlugin {
+public class SimplySurvivalPlugin extends JavaPlugin {
     private static List<AbstractCommand> commands = Arrays.asList(
             new ClaimCommand(),
             new InfoCommand(),
@@ -41,9 +41,13 @@ public class MClansPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new PreventedActionListener(), this);
         getServer().getPluginManager().registerEvents(new ChestOpenListener(), this);
+
+
+        getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
+
         Morphia morphia = new Morphia();
 
-        morphia.mapPackage("com.jaeheonshim.mclans");
+        morphia.mapPackage("com.jaeheonshim.simplysurvival.mclans");
         Datastore datastore = morphia.createDatastore(new MongoClient(), "mclans");
         datastore.ensureIndexes();
 
