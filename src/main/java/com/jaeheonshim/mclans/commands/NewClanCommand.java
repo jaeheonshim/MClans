@@ -15,6 +15,8 @@ public class NewClanCommand extends AbstractCommand {
         Player sender1 = (Player) sender;
         if (clanManager.getClanOfPlayer(sender1.getUniqueId().toString()) != null) {
             sender.sendMessage(ChatColor.RED + "You are already in a clan! Leave that one before you create your own!");
+        } else if(args.length < 2) {
+            sender.sendMessage(ChatColor.RED + "Please specify the name of your clan!");
         } else if(clanManager.getClanByName(args[1]) != null) {
             sender.sendMessage(ChatColor.RED + "A clan with that name already exists!");
         } else if(args[1].length() >= 16) {
