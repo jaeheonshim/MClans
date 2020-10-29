@@ -61,6 +61,10 @@ public class Clan {
         return true;
     }
 
+    public boolean removeMember(String uuid) {
+        return members.remove(uuid);
+    }
+
     public boolean isMember(String uuid) {
         return uuid.equals(ownerUuid) || members.contains(uuid);
     }

@@ -2,6 +2,7 @@ package com.jaeheonshim.mclans;
 
 import dev.morphia.Datastore;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.SpectralArrow;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,16 @@ public class PlayerManager {
         }
 
         return playerMap.get(uuid);
+    }
+
+    public String getCachedUuid(String username) {
+        SPlayer retrievedPlayer = datastore.find(SPlayer.class).field("cachedUsername").equalIgnoreCase(username).first();
+
+        if(retrievedPlayer != null) {
+            return retrievedPlayer.getUuid();
+        }
+
+        return null;
     }
 
     public static PlayerManager getInstance() {
