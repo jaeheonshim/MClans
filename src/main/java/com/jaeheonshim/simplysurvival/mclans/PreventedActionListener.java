@@ -10,11 +10,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PreventedActionListener implements Listener {
     @EventHandler
     public void handleBucketEmpty(PlayerBucketEmptyEvent event) {
+        handlePreventedAction(event.getBlockClicked().getChunk(), event, event.getPlayer());
+    }
+
+    @EventHandler
+    public void handleBucketFill(PlayerBucketFillEvent event) {
         handlePreventedAction(event.getBlockClicked().getChunk(), event, event.getPlayer());
     }
 
