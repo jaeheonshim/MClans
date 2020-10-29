@@ -51,10 +51,12 @@ public class KickMemberCommand extends AbstractCommand {
             return true;
         }
 
-        if(clan.removeMember(kickUuid))
+        if(clan.removeMember(kickUuid)) {
+            manager.saveClan(clan);
             clan.broadcastToOnline(ChatColor.YELLOW + playerUsername + ChatColor.RED + " has been removed from your clan.");
-        else
+        } else {
             player.sendMessage(ChatColor.RED + "That player isn't a member of your clan!");
+        }
         return true;
     }
 

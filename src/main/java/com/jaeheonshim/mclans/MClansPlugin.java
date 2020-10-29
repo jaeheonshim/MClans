@@ -25,7 +25,8 @@ public class MClansPlugin extends JavaPlugin {
             new InvitePlayerCommand(),
             new AcceptInviteCommand(),
             new DestroyClanCommand(),
-            new KickMemberCommand()
+            new KickMemberCommand(),
+            new LeaveClanCommand()
     );
 
     @Override
