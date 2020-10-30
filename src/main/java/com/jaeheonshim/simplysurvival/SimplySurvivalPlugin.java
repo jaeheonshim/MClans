@@ -6,6 +6,7 @@ import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import com.jaeheonshim.simplysurvival.server.commands.AbstractServerCommand;
 import com.jaeheonshim.simplysurvival.server.commands.MuteCommand;
 import com.jaeheonshim.simplysurvival.server.commands.SuicideCommand;
+import com.jaeheonshim.simplysurvival.server.listeners.HungerTickListener;
 import com.jaeheonshim.simplysurvival.server.listeners.PlayerChatListener;
 import com.jaeheonshim.simplysurvival.server.tasks.IncrementPlayerTimeTask;
 import com.mongodb.MongoClient;
@@ -49,8 +50,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChestOpenListener(), this);
         getServer().getPluginManager().registerEvents(new ExplosionListener(), this);
 
-
         getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
+        getServer().getPluginManager().registerEvents(new HungerTickListener(), this);
 
         Morphia morphia = new Morphia();
 
