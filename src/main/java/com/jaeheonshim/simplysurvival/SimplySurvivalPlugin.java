@@ -7,6 +7,7 @@ import com.jaeheonshim.simplysurvival.server.commands.AbstractServerCommand;
 import com.jaeheonshim.simplysurvival.server.commands.MuteCommand;
 import com.jaeheonshim.simplysurvival.server.commands.SuicideCommand;
 import com.jaeheonshim.simplysurvival.server.listeners.PlayerChatListener;
+import com.jaeheonshim.simplysurvival.server.tasks.IncrementPlayerTimeTask;
 import com.mongodb.MongoClient;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
@@ -46,6 +47,7 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new PreventedActionListener(), this);
         getServer().getPluginManager().registerEvents(new ChestOpenListener(), this);
+        getServer().getPluginManager().registerEvents(new ExplosionListener(), this);
 
 
         getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
@@ -65,6 +67,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             Bukkit.getLogger().severe("Failed to load all clans! Disabling plugin to preserve database.");
             Bukkit.getPluginManager().disablePlugin(this);
         }
+
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 60);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.jaeheonshim.simplysurvival.mclans;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
+import dev.morphia.annotations.Transient;
 import org.bson.types.ObjectId;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -15,9 +16,13 @@ public class Clan {
     @Id
     private ObjectId id;
     private String name;
+    private int claimableAmount = 5;
     private Set<DataChunk> landClaims = new HashSet<>();
     private String ownerUuid;
     private Set<String> members = new HashSet<>();
+
+    @Transient
+    private boolean systemClan = false;
 
     public Clan() {
 
@@ -94,6 +99,18 @@ public class Clan {
                 player.sendMessage(message);
             }
         }
+    }
+
+    public int getClaimableAmount() {
+        return claimableAmount;
+    }
+
+    public boolean isSystemClan() {
+        return systemClan;
+    }
+
+    public void setSystemClan(boolean systemClan) {
+        this.systemClan = systemClan;
     }
 
     @Override

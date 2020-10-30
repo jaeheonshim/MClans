@@ -4,6 +4,7 @@ import dev.morphia.Datastore;
 import dev.morphia.query.internal.MorphiaCursor;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,21 @@ public class ClanManager {
 
     public static void init(Datastore datastore) {
         clanManager = new ClanManager(datastore);
+        Clan clan = clanManager.newSystemClan("Spawn");
+
+        for(World world : Bukkit.getWorlds()) {
+            if(world.getEnvironment() == World.Environment.NORMAL) {
+                int spawnX = world.getSpawnLocation().getChunk().getX();
+                int spawnZ = world.getSpawnLocation().getChunk().getZ();
+                int spawnRadius = 5;
+
+                for(int i = spawnX - 5; i <= spawnX + 5; i++) {
+                    for(int j = spawnZ - 5; j <= spawnZ + 5; j++) {
+                        clan.claim(world.getChunkAt(i, j));
+                    }
+                }
+            }
+        }
     }
 
     public static ClanManager getClanManager() {
@@ -50,6 +66,14 @@ public class ClanManager {
         clans.add(newClan);
 
         saveClan(newClan);
+
+        return newClan;
+    }
+
+    public Clan newSystemClan(String name) {
+        Clan newClan = new Clan(name, "");
+        clans.add(newClan);
+        newClan.setSystemClan(true);
 
         return newClan;
     }

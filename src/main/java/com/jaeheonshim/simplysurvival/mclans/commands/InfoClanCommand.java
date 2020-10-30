@@ -41,6 +41,7 @@ public class InfoClanCommand extends AbstractClanCommand {
         }
 
         message.append(memberJoiner.length() > 0 ? memberJoiner.toString() + "\n" : "None" + "\n");
+        message.append(key + "Land claims available: " + value + clan.getClaimableAmount() + "\n");
         message.append(key + "Land claims: " + value + clan.getClaimAmount());
 
         player.sendMessage(message.toString());
