@@ -4,6 +4,7 @@ import com.jaeheonshim.simplysurvival.mclans.Clan;
 import com.jaeheonshim.simplysurvival.mclans.ClanInvitation;
 import com.jaeheonshim.simplysurvival.mclans.Constant;
 import com.jaeheonshim.simplysurvival.server.domain.MessageSequence;
+import com.jaeheonshim.simplysurvival.server.domain.PlayerProperties;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Transient;
@@ -24,6 +25,8 @@ public class SPlayer {
     private String muteReason;
     private long mutedUntil;
     private boolean completedIntro;
+
+    private Map<PlayerProperties, String> properties = new HashMap<>();
 
     @Transient
     private long destroyClanTimeStamp;
@@ -157,5 +160,21 @@ public class SPlayer {
 
     public void setCompletedIntro(boolean completedIntro) {
         this.completedIntro = completedIntro;
+    }
+
+    public boolean isEnabledPvp() {
+        return Boolean.parseBoolean(properties.get(PlayerProperties.ENABLED_PVP));
+    }
+
+    public void saveProperty(PlayerProperties property, String value) {
+        this.properties.put(property, value);
+    }
+
+    public void saveProperty(PlayerProperties property, boolean value) {
+        this.properties.put(property, Boolean.toString(value));
+    }
+
+    public String getProperty(PlayerProperties property) {
+        return this.properties.getOrDefault(property, "");
     }
 }

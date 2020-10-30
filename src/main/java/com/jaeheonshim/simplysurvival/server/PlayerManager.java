@@ -2,6 +2,7 @@ package com.jaeheonshim.simplysurvival.server;
 
 import dev.morphia.Datastore;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,10 @@ public class PlayerManager {
         }
 
         return playerMap.get(uuid);
+    }
+
+    public SPlayer getPlayer(Player player) {
+        return getPlayer(player.getUniqueId().toString());
     }
 
     public String getCachedUuid(String username) {
