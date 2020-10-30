@@ -1,0 +1,9 @@
+&0&nClans Guide&r\n\n&0This book is a guide on how to use the clans feature built into the plugin. This feature allows you to claim land and protect it from outside modification.
+&0&nPart 1: Creating a new clan&r\n\n&0You can create a new clan using the command {/clan new} followed by the name of your clan. For example:\n\n{/clan new CoolClan}
+&0&nPart 2: About your clan&r\n\n&0You can see all the details about the clan you are currently in with the command &1&o/clan info&r&0. You can also see all of the claims your clan owns with the command &1&o/clan claims&r&0.
+&0&nPart 3: Claiming land&r\n\n&0You can claim land in chunks, 1 chunk at a time. To claim land, run the command {/clan claim} while standing in the chunk you want to claim. Land your clan claims will only be modifiable by members of your clan.
+&0&nPart 4: Unclaiming land&r\n\n&0You can also unclaim land using the command {/clan unclaim} while standing in the chunk you want to unclaim. You can also specify chunk coordinates in the command like so:\n\n{/clan unclaim 13 43}
+&0&nPart 5: Inviting players&r\n\n&0You can invite other players using the command {/clan invite}, followed by their username. They'll have 5 minutes to accept the invite. For example:\n\n{/clan invite Notch}
+&0&nAll Commands:&r\n&0{/clan accept <clan name>} - accept invite from clan\n\n{/clan new <clan name>} - create new clan\n\n{/clan claim} - claim land\n\n{/clan unclaim [coords]} - unclaim land
+&0{/clan destroy} - destroy clan\n\n{/clan info} - get info about clan\n\n{/clan invite <player>} - invite player to clan\n\n{/clan kick <player>} - kick player from clan\n\n{/clan leave} - leave clan
+&0{/clan claims} - List clan claims

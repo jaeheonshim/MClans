@@ -35,6 +35,7 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             new DestroyClanClanCommand(),
             new KickMemberClanCommand(),
             new LeaveClanClanCommand(),
+            new GetClanGuideCommand(),
             new MuteCommand(),
             new SuicideCommand(),
             new EnablePvpCommand()
@@ -73,6 +74,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             Bukkit.getLogger().severe("Failed to load all clans! Disabling plugin to preserve database.");
             Bukkit.getPluginManager().disablePlugin(this);
         }
+
+        ClansGuideBook.initBook(this);
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 60);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SendWelcomeSequenceTask(), 0, 20 * 10);
