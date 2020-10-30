@@ -3,6 +3,7 @@ package com.jaeheonshim.simplysurvival.server;
 import com.jaeheonshim.simplysurvival.mclans.Clan;
 import com.jaeheonshim.simplysurvival.mclans.ClanInvitation;
 import com.jaeheonshim.simplysurvival.mclans.Constant;
+import com.jaeheonshim.simplysurvival.server.domain.MessageSequence;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Transient;
@@ -22,9 +23,13 @@ public class SPlayer {
 
     private String muteReason;
     private long mutedUntil;
+    private boolean completedIntro;
 
     @Transient
     private long destroyClanTimeStamp;
+
+    @Transient
+    private MessageSequence currentIntroSequence = Constants.welcomeSequence;
 
     @Transient
     private Set<ClanInvitation> invitations = new HashSet<>();
@@ -136,5 +141,21 @@ public class SPlayer {
 
     public String getMuteReason() {
         return muteReason;
+    }
+
+    public boolean isCompletedIntro() {
+        return completedIntro;
+    }
+
+    public MessageSequence getCurrentIntroSequence() {
+        return currentIntroSequence;
+    }
+
+    public void setCurrentIntroSequence(MessageSequence currentIntroSequence) {
+        this.currentIntroSequence = currentIntroSequence;
+    }
+
+    public void setCompletedIntro(boolean completedIntro) {
+        this.completedIntro = completedIntro;
     }
 }
