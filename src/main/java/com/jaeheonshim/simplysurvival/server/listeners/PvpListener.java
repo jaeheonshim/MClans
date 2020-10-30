@@ -24,7 +24,7 @@ public class PvpListener implements Listener {
             if(damager.getTimePlayed() < 60 && !damager.isEnabledPvp()) {
                 event.setCancelled(true);
 
-                event.getDamager().sendMessage(ChatColor.RED + "You are protected from pvp and cannot damage other players!");
+                event.getDamager().sendMessage(ChatColor.RED + "You are protected from pvp and cannot damage other players! You can forfeit this protection with " + ChatColor.YELLOW + "/enablepvp" + ChatColor.RED + ".");
             }
         }
     }

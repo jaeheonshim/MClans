@@ -12,6 +12,9 @@ commands:
   suicide:
     description: Instantly kills you
     usage: /<command>
+  enablepvp:
+    description: Disable your pvp protection
+    usage: /<enablepvp>
 permissions:
   simplysurvival.admin:
     default:

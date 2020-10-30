@@ -4,6 +4,7 @@ import com.jaeheonshim.simplysurvival.mclans.*;
 import com.jaeheonshim.simplysurvival.mclans.commands.*;
 import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import com.jaeheonshim.simplysurvival.server.commands.AbstractServerCommand;
+import com.jaeheonshim.simplysurvival.server.commands.EnablePvpCommand;
 import com.jaeheonshim.simplysurvival.server.commands.MuteCommand;
 import com.jaeheonshim.simplysurvival.server.commands.SuicideCommand;
 import com.jaeheonshim.simplysurvival.server.listeners.HungerTickListener;
@@ -35,7 +36,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             new KickMemberClanCommand(),
             new LeaveClanClanCommand(),
             new MuteCommand(),
-            new SuicideCommand()
+            new SuicideCommand(),
+            new EnablePvpCommand()
     );
 
     @Override
