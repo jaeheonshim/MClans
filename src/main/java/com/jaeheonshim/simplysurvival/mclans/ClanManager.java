@@ -42,7 +42,7 @@ public class ClanManager {
         return clanManager;
     }
 
-    public void loadClans() {
+    public void loadClans() throws RuntimeException {
         Bukkit.getLogger().info("Loading all clans from database...");
         MorphiaCursor<Clan> query = datastore.find(Clan.class).find();
         while(query.hasNext()) {

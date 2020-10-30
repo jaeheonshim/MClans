@@ -13,6 +13,7 @@ import com.jaeheonshim.simplysurvival.server.listeners.PvpListener;
 import com.jaeheonshim.simplysurvival.server.tasks.IncrementPlayerTimeTask;
 import com.jaeheonshim.simplysurvival.server.tasks.SendWelcomeSequenceTask;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import org.bukkit.*;
@@ -60,9 +61,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PvpListener(), this);
 
         Morphia morphia = new Morphia();
-
-        morphia.mapPackage("com.jaeheonshim.simplysurvival.mclans");
-        Datastore datastore = morphia.createDatastore(new MongoClient(), "mclans");
+        morphia.mapPackage("com.jaeheonshim.simplysurvival");
+        Datastore datastore = morphia.createDatastore(new MongoClient(new MongoClientURI(getConfig().getString("mongodb"))), "mclans");
         datastore.ensureIndexes();
 
         PlayerManager.init(datastore);
@@ -71,13 +71,14 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         try {
             ClanManager.getClanManager().loadClans();
         } catch(RuntimeException e) {
+            e.printStackTrace();
             Bukkit.getLogger().severe("Failed to load all clans! Disabling plugin to preserve database.");
             Bukkit.getPluginManager().disablePlugin(this);
         }
 
         ClansGuideBook.initBook(this);
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 60);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SendWelcomeSequenceTask(), 0, 20 * 10);
     }
 

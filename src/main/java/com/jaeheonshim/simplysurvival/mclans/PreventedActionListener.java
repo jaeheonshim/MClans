@@ -1,9 +1,6 @@
 package com.jaeheonshim.simplysurvival.mclans;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Chunk;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
@@ -36,7 +33,7 @@ public class PreventedActionListener implements Listener {
         ClanManager manager = ClanManager.getClanManager();
 
         Clan clanInChunk = manager.getClanInChunk(chunk);
-        if(clanInChunk != null && !clanInChunk.isMember(player.getUniqueId().toString()) && !clanInChunk.getOwnerUuid().equals(player.getUniqueId().toString())) {
+        if(clanInChunk != null && !clanInChunk.isMember(player.getUniqueId().toString()) && !clanInChunk.getOwnerUuid().equals(player.getUniqueId().toString())  && player.getGameMode() != GameMode.CREATIVE) {
             cancellable.setCancelled(true);
             player.sendMessage(ChatColor.RED + "You can't use that in the territory of " + clanInChunk.getName());
         }
