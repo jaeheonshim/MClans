@@ -15,6 +15,12 @@ commands:
   enablepvp:
     description: Disable your pvp protection
     usage: /<enablepvp>
+  spawn:
+    description: Teleports you to spawn
+    usage: /<spawn>
+  help:
+    description: Get help commands
+    usage: /<command>
 permissions:
   simplysurvival.admin:
     default:

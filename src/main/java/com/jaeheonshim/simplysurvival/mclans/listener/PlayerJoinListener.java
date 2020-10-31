@@ -1,4 +1,4 @@
-package com.jaeheonshim.simplysurvival.mclans;
+package com.jaeheonshim.simplysurvival.mclans.listener;
 
 import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import org.bukkit.Bukkit;

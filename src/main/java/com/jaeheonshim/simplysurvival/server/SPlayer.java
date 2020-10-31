@@ -31,6 +31,8 @@ public class SPlayer {
     @Transient
     private long destroyClanTimeStamp;
 
+    private long lastDamageTime;
+
     @Transient
     private MessageSequence currentIntroSequence = Constants.welcomeSequence;
 
@@ -185,5 +187,13 @@ public class SPlayer {
 
     public String getProperty(PlayerProperties property) {
         return this.properties.getOrDefault(property, "");
+    }
+
+    public void recordDamage() {
+        lastDamageTime = System.currentTimeMillis();
+    }
+
+    public boolean isRecallEligible() {
+        return System.currentTimeMillis() - lastDamageTime >= Duration.ofSeconds(15).toMillis();
     }
 }

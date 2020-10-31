@@ -1,1 +1,1 @@
-mongodb: mongodb://simplysurvival:1MAu3wBYivF4XxK1@simplysurvival-shard-00-00.0wgae.mongodb.net:27017,simplysurvival-shard-00-01.0wgae.mongodb.net:27017,simplysurvival-shard-00-02.0wgae.mongodb.net:27017/simplysurvival?ssl=true&replicaSet=atlas-gprzd4-shard-0&authSource=admin&retryWrites=true&w=majority
+mongodb: mongodb://localhost:27017

@@ -1,5 +1,6 @@
-package com.jaeheonshim.simplysurvival.mclans;
+package com.jaeheonshim.simplysurvival.mclans.listener;
 
+import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Chest;
 import org.bukkit.block.DoubleChest;

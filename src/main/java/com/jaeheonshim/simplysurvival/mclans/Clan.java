@@ -20,6 +20,7 @@ public class Clan {
     private Set<DataChunk> landClaims = new HashSet<>();
     private String ownerUuid;
     private Set<String> members = new HashSet<>();
+    private long onlineTimer;
 
     @Transient
     private boolean systemClan = false;
@@ -119,5 +120,22 @@ public class Clan {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public long getOnlineTimer() {
+        return onlineTimer;
+    }
+
+    public long incrementOnlineTimer(long l) {
+        onlineTimer += l;
+        return onlineTimer;
+    }
+
+    public void resetOnlineTimer() {
+        onlineTimer = 0;
+    }
+
+    public void incrementClaimableAmount() {
+        claimableAmount += 1;
     }
 }

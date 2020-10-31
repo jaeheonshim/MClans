@@ -2,6 +2,7 @@ package com.jaeheonshim.simplysurvival.mclans.commands;
 
 import com.jaeheonshim.simplysurvival.mclans.Clan;
 import com.jaeheonshim.simplysurvival.mclans.ClanManager;
+import com.jaeheonshim.simplysurvival.mclans.Constant;
 import com.jaeheonshim.simplysurvival.server.PlayerManager;
 import com.jaeheonshim.simplysurvival.server.SPlayer;
 import org.bukkit.ChatColor;
@@ -42,7 +43,7 @@ public class InfoClanCommand extends AbstractClanCommand {
 
         message.append(memberJoiner.length() > 0 ? memberJoiner.toString() + "\n" : "None" + "\n");
         message.append(key + "Land claims available: " + value + clan.getClaimableAmount() + "\n");
-        message.append(key + "Land claims: " + value + clan.getClaimAmount());
+        message.append(key + "Land claims: " + value + clan.getClaimAmount() + "\n");
 
         player.sendMessage(message.toString());
         return true;

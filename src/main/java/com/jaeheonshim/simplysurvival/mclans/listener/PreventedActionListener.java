@@ -1,5 +1,7 @@
-package com.jaeheonshim.simplysurvival.mclans;
+package com.jaeheonshim.simplysurvival.mclans.listener;
 
+import com.jaeheonshim.simplysurvival.mclans.Clan;
+import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
