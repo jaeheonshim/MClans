@@ -33,6 +33,7 @@ public class AcceptInviteClanCommand extends AbstractClanCommand {
                 invitedClan.addMember(sPlayer.getUuid());
                 manager.saveClan(invitedClan);
                 player.sendMessage(ChatColor.GREEN + "You are now a member of the clan " + invitedClan.getName() + "!");
+                sPlayer.removeInvitation(invitedClan);
                 return true;
             } else {
                 player.sendMessage(ChatColor.RED + "That invitation has expired! You'll have to ask for another one to be sent.");

@@ -91,6 +91,15 @@ public class SPlayer {
         return null;
     }
 
+    public void removeInvitation(Clan clan) {
+        Iterator<ClanInvitation> invitationIterator = invitations.iterator();
+        while(invitationIterator.hasNext()) {
+            if(invitationIterator.next().getClanId().equals(clan.getId().toString())) {
+                invitationIterator.remove();
+            }
+        }
+    }
+
     public boolean isConfirmDestroy() {
         return destroyClanTimeStamp + Constant.CLAN_DESTROY_CONFIRM_TIMEOUT >= System.currentTimeMillis();
     }
