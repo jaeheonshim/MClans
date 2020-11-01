@@ -23,6 +23,6 @@ public class HelpCommand extends AbstractServerCommand {
 
     @Override
     public String getKeyword() {
-        return null;
+        return "help";
     }
 }

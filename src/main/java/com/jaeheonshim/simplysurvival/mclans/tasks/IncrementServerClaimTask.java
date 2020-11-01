@@ -29,5 +29,7 @@ public class IncrementServerClaimTask implements Runnable {
                 ClanManager.getClanManager().saveClan(clan);
             }
         }
+
+        lastTick = System.currentTimeMillis();
     }
 }
