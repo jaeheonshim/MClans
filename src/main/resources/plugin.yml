@@ -21,6 +21,9 @@ commands:
   help:
     description: Get help commands
     usage: /<command>
+  vote:
+    description: Show a link to vote for the clan
+    usage: /<command>
 permissions:
   simplysurvival.admin:
     default:

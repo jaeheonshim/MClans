@@ -1,5 +1,7 @@
 package com.jaeheonshim.simplysurvival.mclans;
 
+import com.jaeheonshim.simplysurvival.server.PlayerManager;
+import com.jaeheonshim.simplysurvival.server.SPlayer;
 import dev.morphia.Datastore;
 import dev.morphia.query.internal.MorphiaCursor;
 import org.bukkit.Bukkit;
@@ -107,5 +109,27 @@ public class ClanManager {
     public void saveClan(Clan clan) {
         Bukkit.getLogger().info("Saving clan: " + clan);
         datastore.save(clan);
+    }
+
+    public void handleVote(String username) {
+        Bukkit.getLogger().info(username + " voted!");
+
+        String uuidCached = PlayerManager.getInstance().getCachedUuid(username);
+
+        if(uuidCached != null) {
+            Clan clan = getClanOfPlayer(uuidCached);
+
+            if(clan != null) {
+                Bukkit.getLogger().info("Registering vote by " + username + " for clan " + clan.getName());
+
+                clan.addVote();
+                if(clan.getClanVotes() >= Constant.CLAN_VOTE_LAND_AMOUNT) {
+                    clan.incrementClaimableAmount();
+                    clan.setClanVotes(0);
+                }
+
+                saveClan(clan);
+            }
+        }
     }
 }

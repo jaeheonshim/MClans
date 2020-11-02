@@ -22,6 +22,10 @@ public class Clan {
     private Set<String> members = new HashSet<>();
     private long onlineTimer;
 
+    private int defensePts = 10;
+
+    private int clanVotes;
+
     @Transient
     private boolean systemClan = false;
 
@@ -137,5 +141,25 @@ public class Clan {
 
     public void incrementClaimableAmount() {
         claimableAmount += 1;
+    }
+
+    public void decrementDefensePoints(int decrVal) {
+        if(defensePts - decrVal < 0) {
+            decrVal = 0;
+        } else {
+            defensePts -= decrVal;
+        }
+    }
+
+    public int getClanVotes() {
+        return clanVotes;
+    }
+
+    public void addVote() {
+        clanVotes++;
+    }
+
+    public void setClanVotes(int clanVotes) {
+        this.clanVotes = clanVotes;
     }
 }

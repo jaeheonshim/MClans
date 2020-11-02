@@ -12,6 +12,7 @@ import com.jaeheonshim.simplysurvival.server.listeners.PlayerTakeDamageListener;
 import com.jaeheonshim.simplysurvival.server.listeners.PvpListener;
 import com.jaeheonshim.simplysurvival.server.tasks.IncrementPlayerTimeTask;
 import com.jaeheonshim.simplysurvival.server.tasks.SendWelcomeSequenceTask;
+import com.jaeheonshim.simplysurvival.server.tasks.TipReminder;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import dev.morphia.Datastore;
@@ -41,7 +42,8 @@ public class SimplySurvivalPlugin extends JavaPlugin {
             new SuicideCommand(),
             new EnablePvpCommand(),
             new SpawnCommand(),
-            new HelpCommand()
+            new HelpCommand(),
+            new VoteCommand()
     );
 
     @Override
@@ -84,6 +86,7 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SendWelcomeSequenceTask(), 0, 20 * 10);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementServerClaimTask(), 0, 20 * 60 * 5);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TipReminder(), 20 * 60 * 5, 20 * 60 * 15);
     }
 
     @Override

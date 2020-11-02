@@ -31,7 +31,11 @@ public class SPlayer {
     @Transient
     private long destroyClanTimeStamp;
 
+    @Transient
     private long lastDamageTime;
+
+    @Transient
+    private long lastPvpTime;
 
     @Transient
     private MessageSequence currentIntroSequence = Constants.welcomeSequence;
@@ -195,5 +199,9 @@ public class SPlayer {
 
     public boolean isRecallEligible() {
         return System.currentTimeMillis() - lastDamageTime >= Duration.ofSeconds(15).toMillis();
+    }
+
+    public boolean isLog() {
+        return System.currentTimeMillis() - lastPvpTime <= Constants.PVP_LOG_THRESHOLD;
     }
 }
