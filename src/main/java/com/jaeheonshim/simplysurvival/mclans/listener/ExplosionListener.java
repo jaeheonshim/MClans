@@ -4,6 +4,7 @@ import com.jaeheonshim.simplysurvival.mclans.Clan;
 import com.jaeheonshim.simplysurvival.mclans.ClanManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -23,7 +24,7 @@ public class ExplosionListener implements Listener {
             ClanManager manager = ClanManager.getClanManager();
 
             Clan clanInChunk = manager.getClanInChunk(block.getChunk());
-            if (clanInChunk != null && clanInChunk.isSystemClan()) {
+            if (clanInChunk != null && (clanInChunk.isSystemClan() || block.getType() == Material.CHEST)) {
                 iterator.remove();
             }
         }

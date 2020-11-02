@@ -86,7 +86,6 @@ public class SimplySurvivalPlugin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementPlayerTimeTask(), 0, 20 * 20);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SendWelcomeSequenceTask(), 0, 20 * 10);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IncrementServerClaimTask(), 0, 20 * 60 * 5);
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TipReminder(), 20 * 60 * 5, 20 * 60 * 15);
     }
 
     @Override
